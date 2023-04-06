@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using FilterByPalindromicPredicate;
-using NUnit.Framework;
 
 namespace FilterByPredicate.Tests
 {

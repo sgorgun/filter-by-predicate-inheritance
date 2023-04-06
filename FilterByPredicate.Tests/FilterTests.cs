@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using FilterByDigitPredicate;
 using FilterByPalindromicPredicate;
-using NUnit.Framework;
 
 namespace FilterByPredicate.Tests
 {

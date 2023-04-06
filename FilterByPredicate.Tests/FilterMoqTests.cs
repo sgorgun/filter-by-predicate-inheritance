@@ -2,7 +2,6 @@
 using System.Linq;
 using Moq;
 using Moq.Protected;
-using NUnit.Framework;
 
 namespace FilterByPredicate.Tests
 {
