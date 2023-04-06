@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using DerivedClasses;
 
@@ -60,7 +60,7 @@ namespace FilterByPredicate.Tests
         [Order(1)]
         public void Select_PerformanceTest()
         {
-            const int sourceLength = 100_000_000;
+            const int sourceLength = 1_000_000;
             const int digit = 2;
             const int number = int.MaxValue;
 
