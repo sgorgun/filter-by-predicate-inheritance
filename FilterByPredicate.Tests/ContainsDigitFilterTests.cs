@@ -3,7 +3,7 @@ using System.Linq;
 using FilterByDigitPredicate;
 using NUnit.Framework;
 
-namespace FilterByPredicates.Tests
+namespace FilterByPredicate.Tests
 {
     [TestFixture]
     public class ContainsDigitFilterTests
