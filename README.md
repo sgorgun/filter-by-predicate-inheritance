@@ -23,10 +23,10 @@ The task requires .NET 6 SDK installed.
 
 - Put the common part of the code as a skeleton of operations in the `Filer` [abstract class](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract) and leave the details to be implemented by the derived classes. The overall structure and sequence of the algorithm are preserved by the parent class. 
 
-- Develop derived classes for described above predicates. Place the solutions in two separate projects:
+- Develop derived classes for described above predicates. Place the solutions in the project `DerivedClasses`:
 
-    - [Filter by Digit](FilerByDigitWithFramework);
-    - [Filter by Palindromic](FilterByPalindromicWithFramework).
+    - [ContainsDigitFilter](DerivedClasses/ContainsDigitFilter.cs);
+    - [PalindromicFilter](DerivedClasses/PalindromicFilter.cs).
 
 - Run all unit tests.
 
