@@ -6,7 +6,7 @@ namespace DerivedClasses
     /// <summary>
     /// Represents an class filter of the array on a given digit.
     /// </summary>
-    public class ContainsDigitPredicate : Filter
+    public class ContainsDigitFilter : Filter
     {
         /// <summary>
         /// Gets or sets a digit.

@@ -5,7 +5,7 @@ using DerivedClasses;
 namespace FilterByPredicate.Tests
 {
     [TestFixture]
-    public class ContainsDigitPredicateTests
+    public class ContainsDigitFilterTests
     {
         [TestCase(new[] { 2212332, 1405644, -1236674 }, 0, ExpectedResult = new[] { 1405644 })]
         [TestCase(new[] { 53, 71, -24, 1001, 32, 1005 }, 2, ExpectedResult = new[] { -24, 32 })]
@@ -23,7 +23,7 @@ namespace FilterByPredicate.Tests
             ExpectedResult = new int[] { })]
         public int[] Select_ContainsDigitVerifyTests(int[] source, int digit)
         {
-            var filter = new ContainsDigitPredicate() { Digit = digit };
+            var filter = new ContainsDigitFilter() { Digit = digit };
 
             return filter.Select(source);
         }
@@ -31,14 +31,14 @@ namespace FilterByPredicate.Tests
         [Test]
         public void Select_ContainsDigitVerify_ArrayIsEmpty_ThrowArgumentException()
         {
-            var filter = new ContainsDigitPredicate { Digit = 0 };
+            var filter = new ContainsDigitFilter { Digit = 0 };
             Assert.Throws<ArgumentException>(() => filter.Select(Array.Empty<int>()), "Array cannot be empty.");
         }
 
         [Test]
         public void Select_ContainsDigitVerify_ArrayIsNull_ThrowArgumentNullException()
         {
-            var filter = new ContainsDigitPredicate { Digit = 0 };
+            var filter = new ContainsDigitFilter { Digit = 0 };
             Assert.Throws<ArgumentNullException>(() => filter.Select(null), "Array cannot be null.");
         }
 
@@ -46,14 +46,14 @@ namespace FilterByPredicate.Tests
         public void Select_ContainsDigitVerify_DigitLessZero_ThrowArgumentOutOfRangeException() =>
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var containsDigitFilter = new ContainsDigitPredicate { Digit = -1 };
+                var containsDigitFilter = new ContainsDigitFilter { Digit = -1 };
             }, "Expected digit can not be less than zero.");
 
         [Test]
         public void Select_ContainsDigitVerify_DigitMoreThanNine_ThrowArgumentOutOfRangeException() =>
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var containsDigitFilter = new ContainsDigitPredicate { Digit = 17 };
+                var containsDigitFilter = new ContainsDigitFilter { Digit = 17 };
             }, "Expected digit can not be less than zero.");
 
         [Test]
@@ -74,7 +74,7 @@ namespace FilterByPredicate.Tests
                 source[i] = number;
             }
 
-            var filter = new ContainsDigitPredicate { Digit = digit };
+            var filter = new ContainsDigitFilter { Digit = digit };
 
             var expected = Enumerable.Repeat(number, count).ToArray();
 
