@@ -6,7 +6,7 @@ namespace FilterByDigit
     /// <summary>
     /// Represents an class filter of the array on a given digit.
     /// </summary>
-    public class ContainsDigitFilter : Filter
+    public class ContainsDigitPredicate : Filter
     {
         /// <summary>
         /// Gets or sets a digit.

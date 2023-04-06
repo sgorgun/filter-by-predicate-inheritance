@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterByPredicate", "Filter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterByDigit", "FilterByDigit\FilterByDigit.csproj", "{AE9F071E-92B5-4048-BAA8-DA9885C0B139}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterByPalindromic", "FilterByPalindromic\FilterByPalindromic.csproj", "{FB413C04-5598-4E4E-A6DE-B767E9D6A77B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{AE9F071E-92B5-4048-BAA8-DA9885C0B139}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE9F071E-92B5-4048-BAA8-DA9885C0B139}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE9F071E-92B5-4048-BAA8-DA9885C0B139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB413C04-5598-4E4E-A6DE-B767E9D6A77B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB413C04-5598-4E4E-A6DE-B767E9D6A77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB413C04-5598-4E4E-A6DE-B767E9D6A77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB413C04-5598-4E4E-A6DE-B767E9D6A77B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
