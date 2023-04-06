@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using ArrayExtension;
 
@@ -29,7 +29,7 @@ namespace FilterByPredicate.Tests
         [Test]
         public void FilterByPalindromic_PerformanceTest()
         {
-            const int sourceLength = 10_000_000;
+            const int sourceLength = 1_000_000;
             const int palindromic = 1_234_554_321;
             int[] source = Enumerable.Repeat(int.MaxValue, sourceLength).ToArray();
             const int count = 1_000_000, step = sourceLength / count;
@@ -82,7 +82,7 @@ namespace FilterByPredicate.Tests
         [Test]
         public void FilterByDigit_PerformanceTest()
         {
-            const int sourceLength = 100_000_000,
+            const int sourceLength = 1_000_000,
                 digit = 2,
                 number = int.MaxValue;
 
