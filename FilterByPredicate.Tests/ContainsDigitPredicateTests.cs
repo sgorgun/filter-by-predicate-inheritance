@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FilterByDigit;
+using DerivedClasses;
 
 namespace FilterByPredicate.Tests
 {

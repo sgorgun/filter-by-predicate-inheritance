@@ -1,7 +1,7 @@
 ﻿using System;
 using FilterByPredicate;
 
-namespace FilterByDigit
+namespace DerivedClasses
 {
     /// <summary>
     /// Represents an class filter of the array on a given digit.
