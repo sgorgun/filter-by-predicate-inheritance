@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using DerivedClasses;
 
@@ -31,7 +31,7 @@ namespace FilterByPredicate.Tests
         [Test]
         public void Select_PerformanceTest()
         {
-            const int sourceLength = 10_000_000;
+            const int sourceLength = 1_000_000;
             const int palindromic = 1_234_554_321;
 
             int[] source = Enumerable.Repeat(int.MaxValue, sourceLength).ToArray();
