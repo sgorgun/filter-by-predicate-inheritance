@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ArrayExtension
 {
@@ -18,21 +19,33 @@ namespace ArrayExtension
         /// </example>
         public static int[] FilterByDigit(this int[]? source, int digit)
         {
-            //Add necessary code here, than remove comment.
+            if(source is  null) throw new ArgumentNullException(nameof(source), "Array is null");
+            if(source.Length == 0 ) throw new ArgumentException("Array is empty", nameof(source));
+            if(digit < 0) throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be less than zero.");
+            if(digit > 9) throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be more than nine.");
             
-            foreach (var item in source)
+            List<int> result = new List<int>();
+            
+            foreach (int num in source)
             {
-                if (IsMatch(item))
-                {
-                    //Add necessary code here, than remove comment.
-                }
+                if (IsMatch(num))
+                    result.Add(num);
             }
 
-            throw new NotImplementedException();
-            
+            return result.ToArray();
+
             bool IsMatch(int value)
             {
-                throw new NotImplementedException();                
+                if (digit == 0 && value == 0) return true;
+
+                while (value != 0)
+                {
+                    if(value < 0) value = -value;
+                    if (value % 10 == digit) return true;
+                    value /= 10;
+                }
+
+                return false;
             }
         }
         
@@ -49,21 +62,70 @@ namespace ArrayExtension
         /// </example>
         public static int[] FilterByPalindromic(this int[]? source)
         {
-            //Add necessary code here, than remove comment.
-            
-            foreach (var item in source)
+            if (source is null) throw new ArgumentNullException(nameof(source), "Array is null");
+            if (source.Length == 0) throw new ArgumentException("Array is empty", nameof(source));
+
+            List<int> result = new List<int>();
+
+            foreach (int num in source)
             {
-                if (IsMatch(item))
-                {
-                    //Add necessary code here, than remove comment.
-                }
+                if (IsMatch(num))
+                    result.Add(num);
             }
 
-            throw new NotImplementedException();
-            
+            return result.ToArray();
+
             bool IsMatch(int value)
             {
-                throw new NotImplementedException();                
+                int leftPart = 0;
+                int rightPart = 0;
+                int numLength = GetNumLength(value);
+
+                for (int i = 0; i < numLength / 2; i++)
+                {
+                    int digit = value % 10;
+                    leftPart = leftPart * 10 + digit;
+                    value /= 10;
+
+                    digit = GetFirstDigit(value, numLength - 1);
+                    rightPart = rightPart * 10 + digit;
+                    value = RemoveFirstDigit(value, numLength - 1);
+                    numLength -= 2;
+                }
+
+                return leftPart == rightPart;
+            }
+
+            int GetNumLength(int num)
+            {
+                int length = 0;
+                while (num != 0)
+                {
+                    num /= 10;
+                    length++;
+                }
+                return length;
+            }
+
+            int GetFirstDigit(int num, int power)
+            {
+                while (power > 0)
+                {
+                    num /= 10;
+                    power--;
+                }
+                return num % 10;
+            }
+
+            int RemoveFirstDigit(int num, int power)
+            {
+                int divisor = 1;
+                while (power > 0)
+                {
+                    divisor *= 10;
+                    power--;
+                }
+                return num % divisor;
             }
         }
     }
