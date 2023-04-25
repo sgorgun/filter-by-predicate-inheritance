@@ -27,19 +27,11 @@ namespace ArrayExtension
                 throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be less than zero or more then 9.");
             }
 
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source), "Array is null");
-            }
+            CheckForNull(source!);
 
-            if (source.Length == 0)
-            {
-                throw new ArgumentException("Array is empty", nameof(source));
-            }
-            
             List<int> result = new List<int>();
             
-            foreach (int num in source)
+            foreach (int num in source!)
             {
                 if (IsMatch(num))
                 {
@@ -71,7 +63,7 @@ namespace ArrayExtension
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Returns new array that contains only palindromic numbers from source array.
         /// </summary>
@@ -85,19 +77,11 @@ namespace ArrayExtension
         /// </example>
         public static int[] FilterByPalindromic(this int[]? source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source), "Array is null");
-            }
-
-            if (source.Length == 0)
-            {
-                throw new ArgumentException("Array is empty", nameof(source));
-            }
+            CheckForNull(source!);
 
             List<int> result = new List<int>();
 
-            foreach (int num in source)
+            foreach (int num in source!)
             {
                 if (IsMatch(num))
                 {
@@ -138,6 +122,25 @@ namespace ArrayExtension
                 }
 
                 return length;
+            }
+        }
+
+        /// <summary>
+        /// Check souse array for nul adn empty.
+        /// </summary>
+        /// <param name="source">Source array.</param>
+        /// <exception cref="ArgumentNullException">Throw when array is null.</exception>
+        /// <exception cref="ArgumentException">Throw when array is empty.</exception>
+        private static void CheckForNull(int[] source)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source), "Array is null");
+            }
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("Array is empty", nameof(source));
             }
         }
     }
