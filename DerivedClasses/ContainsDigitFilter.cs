@@ -36,10 +36,7 @@ namespace DerivedClasses
 
             while (item != 0)
             {
-                if (item < 0)
-                {
-                    item = -item;
-                }
+                item = (item < 0) ? -item : item;
 
                 if (item % 10 == digit)
                 {

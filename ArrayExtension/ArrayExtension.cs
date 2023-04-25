@@ -22,7 +22,7 @@ namespace ArrayExtension
         /// </example>
         public static int[] FilterByDigit(this int[]? source, int digit)
         {
-            if ((digit < 0) || (digit > 9))
+            if (digit is < 0 or > 9)
             {
                 throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be less than zero or more then 9.");
             }
@@ -58,10 +58,7 @@ namespace ArrayExtension
 
                 while (value != 0)
                 {
-                    if (value < 0)
-                    {
-                        value = -value;
-                    }
+                    value = (value < 0) ? -value : value;
 
                     if (value % 10 == digit)
                     {
@@ -98,11 +95,6 @@ namespace ArrayExtension
                 throw new ArgumentException("Array is empty", nameof(source));
             }
 
-            if (source.Length == 1)
-            {
-                return Array.Empty<int>();
-            }
-
             List<int> result = new List<int>();
 
             foreach (int num in source)
@@ -136,21 +128,17 @@ namespace ArrayExtension
                 return true;
             }
 
-            byte GetNumLength(int number) => number switch
+            int GetNumLength(int num)
             {
-                int.MinValue => 10,
-                < 0 => GetNumLength(Math.Abs(number)),
-                < 10 => 1,
-                < 100 => 2,
-                < 1000 => 3,
-                < 10_000 => 4,
-                < 100_000 => 5,
-                < 1_000_000 => 6,
-                < 10_000_000 => 7,
-                < 100_000_000 => 8,
-                < 1_000_000_000 => 9,
-                _ => 10
-            };
+                int length = 0;
+                while (num != 0)
+                {
+                    num /= 10;
+                    length++;
+                }
+
+                return length;
+            }
         }
     }
 }

@@ -29,20 +29,16 @@ namespace DerivedClasses
             return true;
         }
 
-        byte GetNumLength(int number) => number switch
+        static int GetNumLength(int num)
         {
-            int.MinValue => 10,
-            < 0 => GetNumLength(Math.Abs(number)),
-            < 10 => 1,
-            < 100 => 2,
-            < 1000 => 3,
-            < 10_000 => 4,
-            < 100_000 => 5,
-            < 1_000_000 => 6,
-            < 10_000_000 => 7,
-            < 100_000_000 => 8,
-            < 1_000_000_000 => 9,
-            _ => 10
-        };
+            int length = 0;
+            while (num != 0)
+            {
+                num /= 10;
+                length++;
+            }
+
+            return length;
+        }
     }
 }
