@@ -3,6 +3,9 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace ArrayExtension
 {
+    /// <summary>
+    /// Common class with all the methods.
+    /// </summary>
     public static class ArrayExtension
     {
         /// <summary>
@@ -15,33 +18,56 @@ namespace ArrayExtension
         /// <exception cref="ArgumentException">Thrown when array is empty.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when digit value is out of range (0..9).</exception>
         /// <example>
-        /// {1, 2, 3, 4, 5, 6, 7, 68, 69, 70, 15, 17}  => { 7, 70, 17 } for digit = 7
+        /// {1, 2, 3, 4, 5, 6, 7, 68, 69, 70, 15, 17}  => { 7, 70, 17 } for digit = 7.
         /// </example>
         public static int[] FilterByDigit(this int[]? source, int digit)
         {
-            if(source is  null) throw new ArgumentNullException(nameof(source), "Array is null");
-            if(source.Length == 0 ) throw new ArgumentException("Array is empty", nameof(source));
-            if(digit < 0) throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be less than zero.");
-            if(digit > 9) throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be more than nine.");
+            if ((digit < 0) || (digit > 9))
+            {
+                throw new ArgumentOutOfRangeException(nameof(digit), "Digit can not be less than zero or more then 9.");
+            }
+
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source), "Array is null");
+            }
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("Array is empty", nameof(source));
+            }
             
             List<int> result = new List<int>();
             
             foreach (int num in source)
             {
                 if (IsMatch(num))
+                {
                     result.Add(num);
+                }
             }
 
             return result.ToArray();
 
             bool IsMatch(int value)
             {
-                if (digit == 0 && value == 0) return true;
+                if (digit == 0 && value == 0)
+                {
+                    return true;
+                }
 
                 while (value != 0)
                 {
-                    if(value < 0) value = -value;
-                    if (value % 10 == digit) return true;
+                    if (value < 0)
+                    {
+                        value = -value;
+                    }
+
+                    if (value % 10 == digit)
+                    {
+                        return true;
+                    }
+
                     value /= 10;
                 }
 
@@ -58,75 +84,73 @@ namespace ArrayExtension
         /// <exception cref="ArgumentException">Throw when array is empty.</exception>
         /// <example>
         /// {12345, 1111111112, 987654, 56, 1111111, -1111, 1, 1233321, 70, 15, 123454321}  => { 1111111, 123321, 123454321 }
-        /// {56, -1111111112, 987654, 56, 890, -1111, 543, 1233}  => {  }
+        /// {56, -1111111112, 987654, 56, 890, -1111, 543, 1233}  => {  }.
         /// </example>
         public static int[] FilterByPalindromic(this int[]? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source), "Array is null");
-            if (source.Length == 0) throw new ArgumentException("Array is empty", nameof(source));
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source), "Array is null");
+            }
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("Array is empty", nameof(source));
+            }
+
+            if (source.Length == 1)
+            {
+                return Array.Empty<int>();
+            }
 
             List<int> result = new List<int>();
 
             foreach (int num in source)
             {
                 if (IsMatch(num))
+                {
                     result.Add(num);
+                }
             }
 
             return result.ToArray();
 
             bool IsMatch(int value)
             {
-                int leftPart = 0;
-                int rightPart = 0;
-                int numLength = GetNumLength(value);
+                int div = (int)Math.Pow(10, GetNumLength(value) - 1);
 
-                for (int i = 0; i < numLength / 2; i++)
+                while (value != 0)
                 {
-                    int digit = value % 10;
-                    leftPart = leftPart * 10 + digit;
-                    value /= 10;
+                    int firstDigit = value / div;
+                    int lastDigit = value % 10;
 
-                    digit = GetFirstDigit(value, numLength - 1);
-                    rightPart = rightPart * 10 + digit;
-                    value = RemoveFirstDigit(value, numLength - 1);
-                    numLength -= 2;
+                    if ((firstDigit != lastDigit) || (value < 0))
+                    {
+                        return false;
+                    }
+
+                    value = (value % div) / 10;
+                    div /= 100;
                 }
 
-                return leftPart == rightPart;
+                return true;
             }
 
-            int GetNumLength(int num)
+            byte GetNumLength(int number) => number switch
             {
-                int length = 0;
-                while (num != 0)
-                {
-                    num /= 10;
-                    length++;
-                }
-                return length;
-            }
-
-            int GetFirstDigit(int num, int power)
-            {
-                while (power > 0)
-                {
-                    num /= 10;
-                    power--;
-                }
-                return num % 10;
-            }
-
-            int RemoveFirstDigit(int num, int power)
-            {
-                int divisor = 1;
-                while (power > 0)
-                {
-                    divisor *= 10;
-                    power--;
-                }
-                return num % divisor;
-            }
+                int.MinValue => 10,
+                < 0 => GetNumLength(Math.Abs(number)),
+                < 10 => 1,
+                < 100 => 2,
+                < 1000 => 3,
+                < 10_000 => 4,
+                < 100_000 => 5,
+                < 1_000_000 => 6,
+                < 10_000_000 => 7,
+                < 100_000_000 => 8,
+                < 1_000_000_000 => 9,
+                _ => 10
+            };
         }
     }
 }

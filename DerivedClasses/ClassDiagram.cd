@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DerivedClasses.ContainsDigitFilter">
+    <Position X="1.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContainsDigitFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DerivedClasses.PalindromicFilter">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PalindromicFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FilterByPredicate.Filter">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DerivedClasses.OddFilter">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="FilterByPredicate.Filter" ManuallyRouted="true">
+      <Path>
+        <Point X="5" Y="2.488" />
+        <Point X="5" Y="3.623" />
+        <Point X="7.75" Y="3.623" />
+        <Point X="7.75" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OddFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DerivedClasses.PositiveFilter">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="FilterByPredicate.Filter" ManuallyRouted="true">
+      <Path>
+        <Point X="5" Y="2.488" />
+        <Point X="5" Y="3.634" />
+        <Point X="10" Y="3.634" />
+        <Point X="10" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PositiveFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -16,7 +16,27 @@ namespace FilterByPredicate
         /// <exception cref="ArgumentException">Throws when the array is empty.</exception>
         public int[] Select(int[]? source)
         {
-            throw new NotImplementedException();
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source), "Array is null");
+            }
+
+            if (source.Length == 0)
+            {
+                throw new ArgumentException("Array is empty", nameof(source));
+            }
+
+            List<int> result = new List<int>();
+
+            foreach (int num in source)
+            {
+                if (this.IsMatch(num))
+                {
+                    result.Add(num);
+                }
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
