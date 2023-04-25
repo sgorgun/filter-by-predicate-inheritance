@@ -41,23 +41,21 @@ namespace ArrayExtension
 
             return result.ToArray();
 
-            bool IsMatch(int value)
+            bool IsMatch(long value)
             {
                 if (digit == 0 && value == 0)
                 {
                     return true;
                 }
 
-                while (value != 0)
-                {
-                    value = (value < 0) ? -value : value;
+                value = (value < 0) ? -value : value;
 
+                for (; value != 0; value /= 10)
+                {
                     if (value % 10 == digit)
                     {
                         return true;
                     }
-
-                    value /= 10;
                 }
 
                 return false;
